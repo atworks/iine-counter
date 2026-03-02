@@ -1,6 +1,15 @@
 <body>
   <header>
     <style type="text/css">
+      html,
+      body {
+        touch-action: manipulation;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* スクロールを禁止 */
+        overscroll-behavior-y: none; /* iOS/Androidのバウンドを防止 */
+      }
       .container {
         display: flex;
         justify-content: center; /* 水平中央 */
@@ -17,7 +26,7 @@
         padding: 8px 16px;
         font-size: 100px;
         width: 50%;
-        height: 50%;
+        height: 200px;
       }
       button:active {
         box-shadow: none;
