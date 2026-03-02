@@ -2,10 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <style type="text/css">
+      .container {
+        display: flex;
+        justify-content: center; /* 水平中央 */
+        align-items: center; /* 垂直中央 */
+        height: 100vh; /* 画面の高さ100% */
+      }
+      input {
+        width: auto;
+        height: 10%;
+        text-align: center;
+        font-size: xxx-large;
+        border: none;
+      }
+    </style>
   </head>
   <body>
     <p>いいね数ボード</p>
-    <input id="dispMsg" />
+    <div class="container">
+      <input id="dispMsg" />
+    </div>
     <button id="reset">リセット</button>
   </body>
 </html>
@@ -22,6 +39,9 @@
   });
 
   ws.onopen = function (event) {
+    var data = {};
+    data.action = "sendmessage";
+    ws.send(JSON.stringify(data));
   };
 
   //メッセージ受信
