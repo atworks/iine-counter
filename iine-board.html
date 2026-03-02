@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <p>いいね数ボード</p>
+    <input id="dispMsg" />
+    <button id="reset">リセット</button>
+  </body>
+</html>
+
+<script type="text/javascript">
+  var ws = new WebSocket(
+    "wss://lcmypwc323.execute-api.ap-northeast-1.amazonaws.com/production/",
+  );
+
+  reset.addEventListener("click", (e) => {
+    var data = {};
+    data.action = "reset";
+    ws.send(JSON.stringify(data));
+  });
+
+  ws.onopen = function (event) {
+  };
+
+  //メッセージ受信
+  ws.onmessage = function (event) {
+    document.getElementById("dispMsg").value = event.data;
+  };
+</script>
