@@ -41,9 +41,19 @@
   </main>
   <footer></footer>
   <script>
-    var ws = new WebSocket(
-      "wss://lcmypwc323.execute-api.ap-northeast-1.amazonaws.com/production/",
-    );
+    let ws;
+    const connect = () => {
+      ws = new WebSocket(
+        "wss://lcmypwc323.execute-api.ap-northeast-1.amazonaws.com/production/",
+      );
+      ws.onopen = function () {};
+      ws.onclose = (e) => {
+        console.log("Socket closed. Reconnecting...", e.reason);
+        setTimeout(() => {
+          connect();
+        }, 500);
+      };
+    };
 
     btn.addEventListener("click", (e) => {
       var data = {};
@@ -51,6 +61,6 @@
       ws.send(JSON.stringify(data));
     });
 
-    ws.onopen = function () {};
+    connect();
   </script>
 </body>
